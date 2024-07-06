@@ -1,6 +1,10 @@
-const fs = require("fs");
+import RNFS from 'react-native-fs';
 
-
-exports.read = function(path, encoding='utf-8') {
-    return fs.readFileSync(path, encoding);
+exports.read = async (path, encoding = 'utf-8') => {
+    try {
+        const content = await RNFS.readFile(path, encoding);
+        return content;
+    } catch (error) {
+        console.error(error);
+    }
 };
